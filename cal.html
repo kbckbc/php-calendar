@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Cool Ajax Calendar</title>
+    <link rel="stylesheet" href="cal.css">   
+	<script src="https://classes.engineering.wustl.edu/cse330/content/calendar.min.js"></script> 
+	<script src="common.js"></script> 
+  </head>
+  <body>
+	<!-- main page start -->
+	<div class="float_right">
+		<span id="spanLoginToken" hidden></span>
+		<span id="spanLoginMessage" class="margin_right_20"></span>
+		<a id="btnLoginModal" href="javascript:clickOpenLoginModal()" role="button" class="button_small display_none" >Login</a>
+		<a id="btnSignupModal" href="javascript:clickOpenSignupModal()" role="button" class="button_small display_none" >Signup</a>
+		<a id="btnMypage" href="javascript:clickOpenMypageModal()" role="button" class="button_small display_none">My page</a>
+		<a id="btnLogout" href="javascript:clickLogout()" role="button" class="button_small display_none">Logout</a>
+	</div>
+	<div style="clear:both">
+		<div id="divSharing" class="float_left min_width_200 max_width_230">
+			<div><code>Sharing with</code><a href="javascript:clickOpenSharingModal()"><span id="spanAddSharing" class="addsharing display_none"> + add</span></a></div>
+			<ul id="listSharing" class="margin_left_20">
+			</ul>
+		</div>
+		<div class="float_right">
+			<div class="text_center margin_bottom_10">
+				<a id="btnToday" href="javascript:clickGoToday()" role="button" class="outline button_small">Today</a>
+				<a id="btnPrev" href="javascript:clickPrevMonth()" role="button" class="outline button_small">&lt;</a>
+				<a id="btnNext" href="javascript:clickNextMonth()" role="button" class="outline button_small">&gt;</a>
+				<span id="spanCurrMonth" ></span>
+			</div> 
+			<div id="divCalendar" ></div>
+		</div>
+	</div>
+	<!-- main page end -->
+
+	<!-- The Modal, they don't show up at first. start. -->
+	<div id="divLoginMoal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<form action="javascript:clickLogin()">
+				<label for="loginUsername">Username(Enter your email):</label>
+				<input type="email" id="loginUsername" name="loginUsername" maxlength="32" required>
+				<br>
+				<label for="loginPassword">Password</label>
+				<input type="password" id="loginPassword" name="loginPassword" maxlength="32" required>
+				<br>
+				<input type="submit" value="Login">
+			</form>
+		</div>
+	</div>
+
+	<div id="divSignupMoal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<form action="javascript:clickSignup()">
+				<label for="signupUsername">Username(Enter your email)</label>
+				<input type="email" id="signupUsername" name="signupUsername" maxlength="32" required>
+				<br>
+				<label for="signupPassword">Password</label>
+				<input type="password" id="signupPassword" name="signupPassword" maxlength="32" required>
+				<br>
+				<label for="signupNickname">Nickname</label>
+				<input type="text" id="signupNickname" name="signupNickname" maxlength="32" required>
+				<br>
+				<input type="submit" value="Sign up">
+			</form>
+		</div>
+	</div>
+
+	<div id="divWholeEventModal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h5>Date</h5>
+			<input type="text" id="inputWholeEventDay" disabled>
+			<br>
+			<ul id="listWholeEvent" class="margin_left_20">
+			</ul>
+		</div>
+	</div>
+
+	<div id="divEventMoal" class="modal">
+		<div class="modal-content">
+		<span class="close">&times;</span>
+		<form action="javascript:clickAddEditEvent()">
+			<input type="text" id="inputEventId" hidden>
+
+			<label for="inputEventUsername">Event owner</label>
+			<input type="text" id="inputEventUsername" disabled>
+			<br>
+
+			<label for="inputEventDay">Date</label>
+			<input type="text" id="inputEventDay" disabled>
+			<br>
+
+			<label for="inputEventTitle">Title</label>
+			<input type="text" id="inputEventTitle" maxlength="100" required>
+			<br>
+			<label for="inputEventContent">Content</label>
+			<input type="text" id="inputEventContent" maxlength="300" required>
+			<br>
+			<label for="inputEventContent">Time</label>
+			<div class="grid">
+				<input type="text" id="inputEventTime" onkeypress="return false;" required>
+				<select id="selectEventTimeCombo" onchange="clickSelectTime()">
+					<option value="">Choose time</option>
+					<option value="00:00">12.00 AM</option>
+					<option value="00:30">12.30 AM</option>
+					<option value="01:00">01.00 AM</option>
+					<option value="01:30">01.30 AM</option>
+					<option value="02:00">02.00 AM</option>
+					<option value="02:30">02.30 AM</option>
+					<option value="03:00">03.00 AM</option>
+					<option value="03:30">03.30 AM</option>
+					<option value="04:00">04.00 AM</option>
+					<option value="04:30">04.30 AM</option>
+					<option value="05:00">05.00 AM</option>
+					<option value="05:30">05.30 AM</option>
+					<option value="06:00">06.00 AM</option>
+					<option value="06:30">06.30 AM</option>
+					<option value="07:00">07.00 AM</option>
+					<option value="07:30">07.30 AM</option>
+					<option value="08:00">08.00 AM</option>
+					<option value="08:30">08.30 AM</option>
+					<option value="09:00">09.00 AM</option>
+					<option value="09:30">09.30 AM</option>
+					<option value="10:00">10.00 AM</option>
+					<option value="10:30">10.30 AM</option>
+					<option value="11:00">11.00 AM</option>
+					<option value="11:30">11.30 AM</option>
+					<option value="12:00">12.00 PM</option>
+					<option value="12:30">12.30 PM</option>
+					<option value="13:00">01.00 PM</option>
+					<option value="13:30">01.30 PM</option>
+					<option value="14:00">02.00 PM</option>
+					<option value="14:30">02.30 PM</option>
+					<option value="15:00">03.00 PM</option>
+					<option value="15:30">03.30 PM</option>
+					<option value="16:00">04.00 PM</option>
+					<option value="16:30">04.30 PM</option>
+					<option value="17:00">05.00 PM</option>
+					<option value="17:30">05.30 PM</option>
+					<option value="18:00">06.00 PM</option>
+					<option value="18:30">06.30 PM</option>
+					<option value="19:00">07.00 PM</option>
+					<option value="19:30">07.30 PM</option>
+					<option value="20:00">08.00 PM</option>
+					<option value="20:30">08.30 PM</option>
+					<option value="21:00">09.00 PM</option>
+					<option value="21:30">09.30 PM</option>
+					<option value="22:00">10.00 PM</option>
+					<option value="22:30">10.30 PM</option>
+					<option value="23:00">11.00 PM</option>
+					<option value="23:30">11.30 PM</option>
+				</select>
+			</div>
+			<br>
+			<input type="submit" id="btnAddEditEvent" value="Add event!">
+		</form>
+		</div>
+	</div>
+
+	<div id="divSharingModal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h5>Want to share your schedule with a user, click it</h5>
+			<ul id="listAvailableUsers" class="margin_left_20">
+			</ul>
+		</div>
+	</div>
+
+	<div id="divMypageModal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h5>
+				Check out your and shared whole schedules!<br>If you click the date, go to the month.
+			</h5>
+			<ul id="listMypageEventLists" class="margin_left_20">
+			</ul>
+		</div>
+	</div>
+	<!-- The Modal, they don't show up at first. end. -->
+
+	<script src="calendar.js"></script> 
+</body>
+</html>

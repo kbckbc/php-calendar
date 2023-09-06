@@ -1,0 +1,129 @@
+@import url(https://unpkg.com/@picocss/pico@latest/css/pico.min.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
+
+body {
+    margin: auto;
+    width: 90%;
+    /* border: 4px dotted lavender; */
+    padding: 10px;
+}
+
+.text_center {
+    text-align: center;
+}
+.center {
+    margin:auto;
+}
+
+
+
+th {
+    text-align:center;
+    padding:0 !important;
+    border:1px solid gray;
+}     
+
+td {
+    text-align: center;
+    min-width: 200px;
+    padding:0 !important;
+    border:1px solid gray;
+}     
+
+.today {
+    background-color: lightcoral;
+}
+.button_small {
+    padding-top:5px;
+    padding-bottom:5px;
+}
+.daybox {
+    height:120px; 
+    cursor: pointer;
+}
+
+.eventlist {
+    list-style: none !important;
+    text-align: start !important;
+    /* padding-left: 20px; */
+}
+
+
+.display_none {
+    display:none;
+}
+
+.min_width_200 {
+    min-width:200px;
+}
+
+.max_width_230 {
+    max-width:230px;
+}
+
+.addsharing {
+    color:coral;
+    font-size: 100%;
+}
+
+.clear_both {
+    clear:both;
+}
+.float_left {
+    float:left;
+}
+
+.float_right {
+    float:right;
+}
+
+.margin_bottom_10 {
+    margin-bottom: 10px;
+}
+.margin_right_20 {
+    margin-right:20px;
+}
+
+
+.margin_left_20 {
+    margin-left:20px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
